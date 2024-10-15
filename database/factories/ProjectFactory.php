@@ -10,11 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProjectFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+
     public function definition(): array
     {
         return [
@@ -22,8 +18,8 @@ class ProjectFactory extends Factory
             'description' => fake()->randomHtml(),
             'ends_at' => fake()->dateTimeBetween('now', '+ 3 days'),
             'status' => fake()->randomElement(['open', 'closed']),
-            'tech_stack' => fake()->randomElements(['react', 'nodejs', 'php', 'python', 'java', 'javascript', 'css', 'html', 'typescript']),
-            'created_by' => User::factory()
+            'tech_stack' => fake()->randomElements(['nodejs', 'react', 'javascript', 'vite', 'nextjs'], random_int(1, 5)),
+            'created_by' => User::factory(),
         ];
     }
 }

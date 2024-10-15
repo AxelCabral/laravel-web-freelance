@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Project;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proposals', function (Blueprint $table) {
-            $table->id();
-            $table->string('email');
-            $table->unsignedSmallInteger('hours');
-            $table->foreignidFor(Project::class)->constrained();
-            $table->timestamps();
+        Schema::table('proposals', function (Blueprint $table) {
+            $table->unsignedInteger('position')->nullable();
+            $table->string('position_status')->nullable();
         });
     }
 
@@ -26,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('proposal');
+        Schema::table('proposals', function (Blueprint $table) {
+            $table->dropColumn(['position', 'position_status']);
+        });
     }
 };
